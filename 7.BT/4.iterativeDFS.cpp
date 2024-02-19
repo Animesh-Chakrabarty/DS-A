@@ -30,25 +30,7 @@ Node* createBT(){
 	return root;
 }
 
-
-vector<int> preOrder(Node* node){
-	vector<int> ans;
-	if(!node) return ans;
-	stack<Node*> stck;
-
-	stck.push(node);
-
-	while(!stck.empty()){
-		Node* temp = stck.top();
-		ans.push_back(temp->data);
-		stck.pop();
-		if(temp->right)stck.push(temp->right);
-		if(temp->left)stck.push(temp->left);
-	}
-
-	return ans;
-}
-
+// 1. inOrder iterative traversal 
 vector<int> inOrder(Node* root){
 	vector<int> ans;
 	stack<Node*> s;
@@ -71,6 +53,26 @@ vector<int> inOrder(Node* root){
 	return ans;
 }
 
+// 2.preOrder Itereative traversal
+vector<int> preOrder(Node* node){
+	vector<int> ans;
+	if(!node) return ans;
+	stack<Node*> stck;
+
+	stck.push(node);
+
+	while(!stck.empty()){
+		Node* temp = stck.top();
+		ans.push_back(temp->data);
+		stck.pop();
+		if(temp->right)stck.push(temp->right);
+		if(temp->left)stck.push(temp->left);
+	}
+
+	return ans;
+}
+
+
 int main(){
 	// creating BT
 	Node* root = createBT();
@@ -83,4 +85,6 @@ int main(){
 	// 2.preOrder
 	vector<int> ans2 = preOrder(root);
 	for(auto it : ans2) cout << it << " ";
+
+		
 }
